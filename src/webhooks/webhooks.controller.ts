@@ -28,9 +28,7 @@ export class WebhooksController {
   }
 
   @Post()
-  createWebhook(
-    @Body() data: { url: string; events: string[] },
-  ) {
+  createWebhook(@Body() data: { url: string; events: string[] }) {
     if (!data.url || !data.events || data.events.length === 0) {
       throw new BadRequestException('URL and events are required');
     }
@@ -47,7 +45,7 @@ export class WebhooksController {
   }
 
   @Post(':id/test')
-  async testWebhook(@Param('id') id: string) {
+  testWebhook(@Param('id') id: string) {
     return this.webhooksService.testPayload(id);
   }
 }

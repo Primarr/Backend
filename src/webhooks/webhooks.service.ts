@@ -55,7 +55,7 @@ export class WebhooksService {
     return this.webhooks.delete(id);
   }
 
-  async testPayload(id: string): Promise<{ success: boolean; message: string }> {
+  testPayload(id: string): { success: boolean; message: string } {
     const webhook = this.webhooks.get(id);
     if (!webhook) {
       return { success: false, message: 'Webhook not found' };
@@ -71,10 +71,7 @@ export class WebhooksService {
     }
   }
 
-  async triggerWebhook(
-    event: string,
-    data: Record<string, unknown>,
-  ): Promise<void> {
+  triggerWebhook(event: string): void {
     const targetWebhooks = Array.from(this.webhooks.values()).filter((wh) =>
       wh.events.includes(event),
     );

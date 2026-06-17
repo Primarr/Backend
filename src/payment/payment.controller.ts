@@ -1,4 +1,13 @@
-import { Controller, Post, Get, Put, Body, Param, Query, BadRequestException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Put,
+  Body,
+  Param,
+  Query,
+  BadRequestException,
+} from '@nestjs/common';
 import type { PaymentReceipt, Transaction } from './payment.types';
 import { PaymentService } from './payment.service';
 import { PaymentDto, BudgetDto } from './payment.dto';
@@ -8,7 +17,7 @@ export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
   @Post('pay')
-  async pay(@Body() paymentDto: PaymentDto): Promise<PaymentReceipt> {
+  pay(@Body() paymentDto: PaymentDto): PaymentReceipt {
     if (!paymentDto.to || paymentDto.amount <= 0) {
       throw new BadRequestException('Invalid payment request');
     }

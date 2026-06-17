@@ -7,7 +7,7 @@ export class PaymentService {
   private transactions: Map<string, Transaction> = new Map();
   private receipts: Map<string, PaymentReceipt> = new Map();
 
-  async pay(request: PaymentRequest, agentAddress: string): Promise<PaymentReceipt> {
+  pay(request: PaymentRequest, agentAddress: string): PaymentReceipt {
     const txHash = this.generateMockTxHash();
     const ledger = Math.floor(Math.random() * 1000000) + 1000000;
 
@@ -40,8 +40,9 @@ export class PaymentService {
   }
 
   getTransactions(limit: number = 10, offset: number = 0): Transaction[] {
-    const txArray = Array.from(this.transactions.values())
-      .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+    const txArray = Array.from(this.transactions.values()).sort(
+      (a, b) => b.timestamp.getTime() - a.timestamp.getTime(),
+    );
     return txArray.slice(offset, offset + limit);
   }
 
