@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Put, Body, Param, Query, BadRequestException } from '@nestjs/common';
+import type { PaymentReceipt, Transaction } from './payment.types';
 import { PaymentService } from './payment.service';
 import { PaymentDto, BudgetDto } from './payment.dto';
-import { PaymentReceipt, Transaction } from './payment.types';
 
 @Controller('v1')
 export class PaymentController {

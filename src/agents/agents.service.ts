@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Budget } from '../payment/payment.types';
 
-interface Agent {
+export interface Agent {
   id: string;
   name: string;
   address: string;

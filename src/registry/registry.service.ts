@@ -66,13 +66,15 @@ export class RegistryService {
     let results = Array.from(this.services.values());
 
     if (params.capability) {
+      const capability = params.capability;
       results = results.filter((s) =>
-        s.capability.toLowerCase().includes(params.capability.toLowerCase()),
+        s.capability.toLowerCase().includes(capability.toLowerCase()),
       );
     }
 
-    if (params.maxPrice) {
-      results = results.filter((s) => s.pricePerCall <= params.maxPrice);
+    if (params.maxPrice !== undefined) {
+      const maxPrice = params.maxPrice;
+      results = results.filter((s) => s.pricePerCall <= maxPrice);
     }
 
     return results.sort((a, b) => b.rating - a.rating);

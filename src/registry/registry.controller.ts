@@ -9,8 +9,8 @@ import {
   Query,
   BadRequestException,
 } from '@nestjs/common';
+import type { Service } from '../payment/payment.types';
 import { RegistryService } from './registry.service';
-import { Service } from '../payment/payment.types';
 
 @Controller('v1/registry')
 export class RegistryController {
